@@ -1,0 +1,13 @@
+table, td, th {
+    border: 0px solid black;
+    text-align:center;
+}
+table { background-color: white }
+td {
+    background-color: #43DD39 ;
+}
+th { background-color: #F6C300 }
+
+input {
+    text-align: right;
+}

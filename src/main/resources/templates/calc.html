@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link rel="stylesheet" th:href="@{/css/calc.css}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+        integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+<div class="container mt-5">
+    <div>
+        <form method="post">
+            <div class="form-group row">
+                <input class="form-control " th:classappend="${!#strings.isEmpty(amountError)} ? is-invalid" type="text" name="amount" placeholder="Enter amount">
+                <div class="invalid-feedback" th:if="${amountError}" th:text="${amountError}"/>
+            </div>
+            <div class="form-group row">
+                <input class="form-control " th:classappend="${!#strings.isEmpty(durationError)} ? is-invalid" type="text" name="duration" placeholder="Enter duration">
+                <div class="invalid-feedback" th:if="${durationError}" th:text="${durationError}"/>
+            </div>
+            <div class="form-group row">
+                <input type="date" id="start" name="startDate"
+                       value="2019-12-22"
+                       min="2018-01-01" max="2029-12-31">
+                <input type="text" name="rate" value="7" readonly>%
+                <button type="submit">Calculate</button>
+            </div>
+        </form>
+    </div>
+    <div th:unless="${#lists.isEmpty(payments)}">
+        <table>
+            <thead>
+            <tr>
+                <th>NN</th>
+                <th>Date</th>
+                <th>Debt</th>
+                <th>Interest</th>
+                <th>Total Left</th>
+                <th>Amount</th>
+
+            </tr>
+            </thead>
+            <tr th:each="p : ${payments}">
+                <td th:text="${p.id}"></td>
+                <td th:text="${p.date}">p.debt</td>
+                <td th:text="${p.debt}">p.debt</td>
+                <td th:text="${p.interest}">p.interest</td>
+                <td th:text="${p.totalLeft}">t.totalLeft</td>
+                <td th:text="${p.amount}">p.amount</td>
+            </tr>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
